@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0b0f14" />
+<title>JUNSU · CrossFit Strength Board</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111821; --panel2:#151e29; --text:#eef4fb; --muted:#91a0b2;
+    --line:#233041; --accent:#67e8f9; --good:#86efac; --warn:#fde68a; --hot:#fca5a5;
+    --shadow:0 16px 50px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+    radial-gradient(900px 420px at 20% -10%,rgba(103,232,249,.16),transparent 55%),
+    radial-gradient(700px 400px at 100% 0%,rgba(134,239,172,.10),transparent 50%),
+    var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Pretendard,"Noto Sans KR",sans-serif}
+  .wrap{max-width:980px;margin:auto;padding:18px 16px 56px}
+  .hero{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);
+    border-radius:24px;padding:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+  .eyebrow{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:8px 0 8px;font-size:clamp(28px,6vw,46px);line-height:1}
+  .sub{color:var(--muted);font-size:14px}
+  .avatar{width:82px;height:82px;border-radius:24px;border:1px solid var(--line);background:
+    linear-gradient(135deg,rgba(103,232,249,.24),rgba(134,239,172,.08));display:grid;place-items:center;
+    font-weight:900;font-size:26px;color:white}
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+  .metric{background:rgba(255,255,255,.035);border:1px solid var(--line);padding:12px;border-radius:16px}
+  .metric b{display:block;font-size:18px}.metric span{font-size:12px;color:var(--muted)}
+  .section-title{display:flex;align-items:end;justify-content:space-between;margin:26px 2px 12px}
+  .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+  .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+  .lift{font-size:17px;font-weight:850}.badge{font-size:11px;padding:5px 8px;border-radius:999px;background:#0c2630;color:var(--accent);border:1px solid #1d4d5c}
+  .record{margin-top:12px;font-size:28px;font-weight:900}.record small{font-size:13px;color:var(--muted);font-weight:700}
+  .estimated{font-size:13px;color:var(--muted);margin-top:3px}
+  .targets{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .target{border:1px solid var(--line);border-radius:12px;padding:9px 8px}
+  .target span{display:block;color:var(--muted);font-size:10px}.target b{font-size:14px}
+  .bar{height:9px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:12px;border:1px solid #1d2835}
+  .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:0}
+  .progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
+  .note{margin-top:16px;background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.20);padding:12px 14px;border-radius:14px;color:#e8dfb8;font-size:12px;line-height:1.55}
+  .footer{margin-top:26px;color:var(--muted);font-size:11px;text-align:center}
+  @media(max-width:680px){
+    .hero{grid-template-columns:1fr auto;padding:18px}.avatar{width:68px;height:68px;border-radius:20px}
+    .metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">CrossFit Strength Board</div>
+      <h1>JUNSU</h1>
+      <div class="sub">2026.09.21 기준 · 약 3개월차</div>
+      <div class="metrics">
+        <div class="metric"><b>172 cm</b><span>Height</span></div>
+        <div class="metric"><b>76 kg</b><span>Body weight</span></div>
+        <div class="metric"><b>1.42×</b><span>FS est. 1RM / BW</span></div>
+        <div class="metric"><b>1.61×</b><span>DL est. 1RM / BW</span></div>
+      </div>
+    </div>
+    <div class="avatar">JS</div>
+  </section>
+
+  <div class="section-title">
+    <h2>Strength profile</h2>
+    <small>현재 기록 → 중급 → 중상급 → 상급</small>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="note">
+    현재 기록은 실제 확인된 세트만 사용했습니다. Front Squat과 Deadlift의 1RM은 반복수 기반 추정치이며,
+    향후 실제 1RM/3RM 기록이 나오면 그 값으로 교체하는 것을 권장합니다.
+    ‘중상급’은 공식 CrossFit 등급이 아니라 개인 추적용 단계입니다.
+  </div>
+
+  <div class="footer">Personal training dashboard · values can be updated as new WOD records are added</div>
+</div>
+
+<script>
+const lifts = [
+ {name:"Back Squat", rec:null, est:null, tiers:[125,145,160]},
+ {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"추정 1RM 105–108 kg", tiers:[100,115,130]},
+ {name:"Deadlift", rec:"111.1 kg × 3", est:122, estLabel:"추정 1RM 120–122 kg", tiers:[150,170,190]},
+ {name:"Strict Press", rec:null, est:null, tiers:[60,70,80]},
+ {name:"Push Press", rec:null, est:null, tiers:[75,85,100]},
+ {name:"Clean", rec:null, est:null, tiers:[90,100,112.5]},
+ {name:"Clean & Jerk", rec:null, est:null, tiers:[87.5,100,115]},
+ {name:"Snatch", rec:null, est:null, tiers:[72.5,82.5,95]}
+];
+const cards = document.getElementById("cards");
+for (const x of lifts){
+  const current = x.est || 0;
+  const pct = x.est ? Math.min(100, Math.round((current/x.tiers[0])*100)) : 0;
+  const status = !x.est ? "기록 대기" : current >= x.tiers[2] ? "상급+" : current >= x.tiers[1] ? "중상급" : current >= x.tiers[0] ? "중급" : "진행 중";
+  cards.insertAdjacentHTML("beforeend", `
+    <article class="card">
+      <div class="top">
+        <div class="lift">${x.name}</div>
+        <div class="badge">${status}</div>
+      </div>
+      <div class="record">${x.rec ?? "—"} ${x.rec ? "" : "<small>current</small>"}</div>
+      <div class="estimated">${x.estLabel ?? "현재 최대 기록 미등록"}</div>
+      <div class="targets">
+        <div class="target"><span>중급</span><b>${x.tiers[0]} kg</b></div>
+        <div class="target"><span>중상급</span><b>${x.tiers[1]} kg</b></div>
+        <div class="target"><span>상급</span><b>${x.tiers[2]} kg</b></div>
+      </div>
+      <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+      <div class="progress"><span>중급 목표 진행률</span><span>${x.est ? pct+"%" : "—"}</span></div>
+    </article>
+  `);
+}
+</script>
+</body>
+</html>
