@@ -30,6 +30,23 @@
   .metric{background:rgba(255,255,255,.035);border:1px solid var(--line);padding:12px;border-radius:16px}
   .metric b{display:block;font-size:18px}.metric span{font-size:12px;color:var(--muted)}
   .section-title{display:flex;align-items:end;justify-content:space-between;margin:26px 2px 12px;gap:12px}
+  .total-card{margin-top:16px;background:linear-gradient(135deg,rgba(103,232,249,.10),rgba(134,239,172,.045));border:1px solid #2a4653;border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+  .total-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+  .total-label{font-size:11px;color:var(--accent);font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+  .total-value{font-size:34px;font-weight:950;line-height:1;margin-top:7px}
+  .total-value small{font-size:14px;color:var(--muted);font-weight:750}
+  .total-sub{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.5}
+  .total-badge{font-size:11px;padding:6px 9px;border-radius:999px;background:#0c2630;color:var(--accent);border:1px solid #1d4d5c;white-space:nowrap}
+  .total-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}
+  .total-part{border:1px solid var(--line);border-radius:14px;padding:10px;background:rgba(0,0,0,.10)}
+  .total-part span{display:block;color:var(--muted);font-size:10px;margin-bottom:3px}.total-part b{font-size:14px}
+  .milestones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+  .mile{border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center}
+  .mile span{display:block;color:var(--muted);font-size:10px}.mile b{font-size:14px}
+  .mile.current{border-color:#2b7385;background:rgba(103,232,249,.06)}
+  .total-bar{height:10px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid #1d2835}
+  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:64.2%}
+  .total-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
   .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted);text-align:right}
   .table-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
   .table-scroll{overflow-x:auto}
@@ -82,6 +99,10 @@
   @media(max-width:680px){
     .hero{grid-template-columns:1fr auto;padding:18px}.avatar{width:68px;height:68px;border-radius:20px}
     .metrics{grid-template-columns:repeat(2,1fr)}
+    .total-top{display:block}
+    .total-badge{display:inline-flex;margin-top:10px}
+    .total-parts{grid-template-columns:1fr 1fr 1fr}
+    .milestones{grid-template-columns:repeat(2,1fr)}
     .desktop-table{display:none}
     .mobile-list{display:block}
     .section-title{align-items:flex-start}
@@ -106,6 +127,30 @@
       </div>
     </div>
     <div class="avatar">JS</div>
+  </section>
+
+  <section class="total-card">
+    <div class="total-top">
+      <div>
+        <div class="total-label">CrossFit Total · estimated</div>
+        <div class="total-value">642 lb <small>≈ 291 kg</small></div>
+        <div class="total-sub">Back Squat + Strict Press + Deadlift의 추정 1RM 합계입니다. 정식 CrossFit Total은 세 종목의 실제 1RM으로 기록합니다.</div>
+      </div>
+      <div class="total-badge">1000 lb까지 358 lb</div>
+    </div>
+    <div class="total-parts">
+      <div class="total-part"><span>Back Squat</span><b>250 lb</b></div>
+      <div class="total-part"><span>Strict Press</span><b>≈ 123 lb</b></div>
+      <div class="total-part"><span>Deadlift</span><b>≈ 269 lb</b></div>
+    </div>
+    <div class="milestones">
+      <div class="mile"><span>1st milestone</span><b>700 lb</b></div>
+      <div class="mile"><span>Next</span><b>800 lb</b></div>
+      <div class="mile"><span>Target</span><b>900 lb</b></div>
+      <div class="mile current"><span>Big goal</span><b>1000 lb</b></div>
+    </div>
+    <div class="total-bar"><div class="total-fill"></div></div>
+    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>64.2%</span></div>
   </section>
 
   <div class="section-title">
