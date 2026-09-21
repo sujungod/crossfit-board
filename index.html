@@ -8,7 +8,7 @@
 <style>
   :root{
     --bg:#0b0f14; --panel:#111821; --panel2:#151e29; --text:#eef4fb; --muted:#91a0b2;
-    --line:#233041; --accent:#67e8f9; --good:#86efac; --warn:#fde68a; --hot:#fca5a5;
+    --line:#233041; --accent:#67e8f9; --good:#86efac; --warn:#fde68a;
     --shadow:0 16px 50px rgba(0,0,0,.28);
   }
   *{box-sizing:border-box}
@@ -16,6 +16,7 @@
     radial-gradient(900px 420px at 20% -10%,rgba(103,232,249,.16),transparent 55%),
     radial-gradient(700px 400px at 100% 0%,rgba(134,239,172,.10),transparent 50%),
     var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Pretendard,"Noto Sans KR",sans-serif}
+  button{font:inherit}
   .wrap{max-width:980px;margin:auto;padding:18px 16px 56px}
   .hero{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);
     border-radius:24px;padding:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
@@ -28,25 +29,65 @@
   .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
   .metric{background:rgba(255,255,255,.035);border:1px solid var(--line);padding:12px;border-radius:16px}
   .metric b{display:block;font-size:18px}.metric span{font-size:12px;color:var(--muted)}
-  .section-title{display:flex;align-items:end;justify-content:space-between;margin:26px 2px 12px}
-  .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
-  .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
-  .lift{font-size:17px;font-weight:850}.badge{font-size:11px;padding:5px 8px;border-radius:999px;background:#0c2630;color:var(--accent);border:1px solid #1d4d5c}
-  .record{margin-top:12px;font-size:28px;font-weight:900}.record small{font-size:13px;color:var(--muted);font-weight:700}
-  .estimated{font-size:13px;color:var(--muted);margin-top:3px}
-  .targets{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-  .target{border:1px solid var(--line);border-radius:12px;padding:9px 8px}
-  .target span{display:block;color:var(--muted);font-size:10px}.target b{font-size:14px}
-  .bar{height:9px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:12px;border:1px solid #1d2835}
-  .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:0}
-  .progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
+  .section-title{display:flex;align-items:end;justify-content:space-between;margin:26px 2px 12px;gap:12px}
+  .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted);text-align:right}
+  .table-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+  .table-scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:720px}
+  thead th{font-size:11px;color:var(--muted);font-weight:700;text-align:right;padding:13px 14px;background:rgba(255,255,255,.025);border-bottom:1px solid var(--line);white-space:nowrap}
+  thead th:first-child{text-align:left}
+  tbody tr{cursor:pointer;transition:.16s ease;background:transparent}
+  tbody tr:hover{background:rgba(103,232,249,.045)}
+  tbody tr:active{background:rgba(103,232,249,.08)}
+  td{padding:14px;border-bottom:1px solid rgba(35,48,65,.78);text-align:right;font-size:13px;white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  td:first-child{text-align:left}
+  .lift-name{font-weight:850;font-size:14px}
+  .record-main{font-weight:800}
+  .muted{color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:5px 8px;border-radius:999px;background:#0c2630;color:var(--accent);border:1px solid #1d4d5c}
+  .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .chev{color:var(--muted);font-size:16px;padding-left:8px}
+  .mobile-list{display:none}
+  .lift-row{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);padding:15px 14px;text-align:left;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;cursor:pointer}
+  .lift-row:last-child{border-bottom:0}
+  .lift-row .row-main{min-width:0}
+  .lift-row .row-title{display:flex;align-items:center;gap:8px;font-weight:850}
+  .lift-row .row-sub{margin-top:5px;color:var(--muted);font-size:12px}
+  .lift-row .row-right{text-align:right}
+  .lift-row .row-right b{display:block;font-size:14px}
+  .lift-row .row-right span{font-size:11px;color:var(--muted)}
+  .hint{padding:10px 14px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
   .note{margin-top:16px;background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.20);padding:12px 14px;border-radius:14px;color:#e8dfb8;font-size:12px;line-height:1.55}
   .footer{margin-top:26px;color:var(--muted);font-size:11px;text-align:center}
+
+  .modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.58);backdrop-filter:blur(8px);z-index:20;padding:16px}
+  .modal.open{display:flex}
+  .sheet{width:min(620px,100%);max-height:88vh;overflow:auto;background:linear-gradient(180deg,#151e29,#101720);border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 24px 90px rgba(0,0,0,.55)}
+  .sheet-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  .sheet h3{font-size:24px;margin:4px 0 4px}
+  .sheet .kicker{font-size:11px;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .close{border:1px solid var(--line);background:#0d141d;color:var(--text);width:36px;height:36px;border-radius:12px;cursor:pointer;font-size:18px}
+  .detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+  .detail{border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(255,255,255,.025)}
+  .detail span{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.detail b{font-size:18px}
+  .targets{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .target{border:1px solid var(--line);border-radius:14px;padding:11px 9px}
+  .target span{display:block;color:var(--muted);font-size:10px}.target b{font-size:15px}
+  .bar{height:10px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:16px;border:1px solid #1d2835}
+  .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good))}
+  .progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
+  .detail-note{margin-top:14px;color:var(--muted);font-size:12px;line-height:1.55}
+
   @media(max-width:680px){
     .hero{grid-template-columns:1fr auto;padding:18px}.avatar{width:68px;height:68px;border-radius:20px}
-    .metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}
+    .metrics{grid-template-columns:repeat(2,1fr)}
+    .desktop-table{display:none}
+    .mobile-list{display:block}
+    .section-title{align-items:flex-start}
+    .section-title small{max-width:150px}
+    .modal{padding:0;align-items:flex-end}
+    .sheet{border-radius:24px 24px 0 0;max-height:90vh}
   }
 </style>
 </head>
@@ -69,54 +110,152 @@
 
   <div class="section-title">
     <h2>Strength profile</h2>
-    <small>현재 기록 → 중급 → 중상급 → 상급</small>
+    <small>종목을 누르면 상세 기록을 볼 수 있습니다.</small>
   </div>
 
-  <div class="grid" id="cards"></div>
+  <section class="table-card">
+    <div class="table-scroll desktop-table">
+      <table>
+        <thead>
+          <tr>
+            <th>종목</th>
+            <th>현재 기록</th>
+            <th>추정 1RM</th>
+            <th>중급</th>
+            <th>중상급</th>
+            <th>상급</th>
+            <th>상태</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="mobile-list" id="mobileList"></div>
+    <div class="hint">현재 기록은 확인된 실제 세트만 표시 · 1RM은 추정치가 있는 경우만 표시</div>
+  </section>
 
   <div class="note">
-    현재 기록은 실제 확인된 세트만 사용했습니다. Front Squat과 Deadlift의 1RM은 반복수 기반 추정치이며,
-    향후 실제 1RM/3RM 기록이 나오면 그 값으로 교체하는 것을 권장합니다.
+    Front Squat과 Deadlift의 1RM은 반복수 기반 추정치입니다.
+    향후 실제 1RM/3RM 기록이 나오면 그 값으로 교체합니다.
     ‘중상급’은 공식 CrossFit 등급이 아니라 개인 추적용 단계입니다.
   </div>
 
   <div class="footer">Personal training dashboard · values can be updated as new WOD records are added</div>
 </div>
 
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="sheet-head">
+      <div>
+        <div class="kicker">Lift detail</div>
+        <h3 id="detailTitle"></h3>
+        <div class="muted" id="detailStatus"></div>
+      </div>
+      <button class="close" id="closeBtn" aria-label="닫기">×</button>
+    </div>
+    <div class="detail-grid">
+      <div class="detail"><span>현재 기록</span><b id="detailRecord">—</b></div>
+      <div class="detail"><span>추정 1RM</span><b id="detailEst">—</b></div>
+      <div class="detail"><span>체중 대비 1RM</span><b id="detailBw">—</b></div>
+      <div class="detail"><span>중급 목표 진행률</span><b id="detailPct">—</b></div>
+    </div>
+    <div class="targets">
+      <div class="target"><span>중급</span><b id="t1"></b></div>
+      <div class="target"><span>중상급</span><b id="t2"></b></div>
+      <div class="target"><span>상급</span><b id="t3"></b></div>
+    </div>
+    <div class="bar"><div class="fill" id="detailFill" style="width:0%"></div></div>
+    <div class="progress"><span>중급 목표 대비</span><span id="detailProgress">—</span></div>
+    <div class="detail-note" id="detailNote"></div>
+  </div>
+</div>
+
 <script>
+const bodyWeight = 76;
 const lifts = [
- {name:"Back Squat", rec:null, est:null, tiers:[125,145,160]},
- {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"추정 1RM 105–108 kg", tiers:[100,115,130]},
- {name:"Deadlift", rec:"111.1 kg × 3", est:122, estLabel:"추정 1RM 120–122 kg", tiers:[150,170,190]},
- {name:"Strict Press", rec:null, est:null, tiers:[60,70,80]},
- {name:"Push Press", rec:null, est:null, tiers:[75,85,100]},
- {name:"Clean", rec:null, est:null, tiers:[90,100,112.5]},
- {name:"Clean & Jerk", rec:null, est:null, tiers:[87.5,100,115]},
- {name:"Snatch", rec:null, est:null, tiers:[72.5,82.5,95]}
+ {name:"Back Squat", rec:null, est:null, estLabel:null, tiers:[125,145,160]},
+ {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"105–108 kg", tiers:[100,115,130], note:"Every 2:00 × 5 sets에서 마지막 210 lb(95.3 kg) × 4 수행."},
+ {name:"Deadlift", rec:"111.1 kg × 3", est:122, estLabel:"120–122 kg", tiers:[150,170,190], note:"Every 2:00 × 5 sets에서 마지막 245 lb(111.1 kg) × 3 수행."},
+ {name:"Strict Press", rec:null, est:null, estLabel:null, tiers:[60,70,80]},
+ {name:"Push Press", rec:null, est:null, estLabel:null, tiers:[75,85,100]},
+ {name:"Clean", rec:null, est:null, estLabel:null, tiers:[90,100,112.5]},
+ {name:"Clean & Jerk", rec:null, est:null, estLabel:null, tiers:[87.5,100,115]},
+ {name:"Snatch", rec:null, est:null, estLabel:null, tiers:[72.5,82.5,95]}
 ];
-const cards = document.getElementById("cards");
-for (const x of lifts){
-  const current = x.est || 0;
-  const pct = x.est ? Math.min(100, Math.round((current/x.tiers[0])*100)) : 0;
-  const status = !x.est ? "기록 대기" : current >= x.tiers[2] ? "상급+" : current >= x.tiers[1] ? "중상급" : current >= x.tiers[0] ? "중급" : "진행 중";
-  cards.insertAdjacentHTML("beforeend", `
-    <article class="card">
-      <div class="top">
-        <div class="lift">${x.name}</div>
-        <div class="badge">${status}</div>
-      </div>
-      <div class="record">${x.rec ?? "—"} ${x.rec ? "" : "<small>current</small>"}</div>
-      <div class="estimated">${x.estLabel ?? "현재 최대 기록 미등록"}</div>
-      <div class="targets">
-        <div class="target"><span>중급</span><b>${x.tiers[0]} kg</b></div>
-        <div class="target"><span>중상급</span><b>${x.tiers[1]} kg</b></div>
-        <div class="target"><span>상급</span><b>${x.tiers[2]} kg</b></div>
-      </div>
-      <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
-      <div class="progress"><span>중급 목표 진행률</span><span>${x.est ? pct+"%" : "—"}</span></div>
-    </article>
-  `);
+
+function statusOf(x){
+  if(!x.est) return "기록 대기";
+  if(x.est >= x.tiers[2]) return "상급+";
+  if(x.est >= x.tiers[1]) return "중상급";
+  if(x.est >= x.tiers[0]) return "중급";
+  return "진행 중";
 }
+function pctOf(x){
+  return x.est ? Math.round((x.est/x.tiers[0])*100) : null;
+}
+function esc(v){return String(v ?? "—");}
+
+const tbody = document.getElementById("tableBody");
+const mobile = document.getElementById("mobileList");
+
+lifts.forEach((x,i)=>{
+  const status = statusOf(x);
+  const tr = document.createElement("tr");
+  tr.tabIndex = 0;
+  tr.innerHTML = `
+    <td><span class="lift-name">${x.name}</span></td>
+    <td><span class="record-main">${esc(x.rec)}</span></td>
+    <td>${x.estLabel ? x.estLabel : "—"}</td>
+    <td>${x.tiers[0]} kg</td>
+    <td>${x.tiers[1]} kg</td>
+    <td>${x.tiers[2]} kg</td>
+    <td><span class="status"><span class="dot"></span>${status}</span></td>
+    <td class="chev">›</td>`;
+  tr.addEventListener("click",()=>openDetail(i));
+  tr.addEventListener("keydown",(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openDetail(i)}});
+  tbody.appendChild(tr);
+
+  const btn = document.createElement("button");
+  btn.className = "lift-row";
+  btn.innerHTML = `
+    <div class="row-main">
+      <div class="row-title">${x.name}<span class="status"><span class="dot"></span>${status}</span></div>
+      <div class="row-sub">현재 ${esc(x.rec)} · 추정 1RM ${x.estLabel ?? "—"}</div>
+    </div>
+    <div class="row-right"><b>${x.tiers[0]} kg</b><span>중급 목표 ›</span></div>`;
+  btn.addEventListener("click",()=>openDetail(i));
+  mobile.appendChild(btn);
+});
+
+const modal = document.getElementById("modal");
+function openDetail(i){
+  const x = lifts[i];
+  const pct = pctOf(x);
+  document.getElementById("detailTitle").textContent = x.name;
+  document.getElementById("detailStatus").textContent = statusOf(x);
+  document.getElementById("detailRecord").textContent = x.rec ?? "—";
+  document.getElementById("detailEst").textContent = x.estLabel ? x.estLabel : "—";
+  document.getElementById("detailBw").textContent = x.est ? (x.est/bodyWeight).toFixed(2)+"× BW" : "—";
+  document.getElementById("detailPct").textContent = pct ? pct+"%" : "—";
+  document.getElementById("t1").textContent = x.tiers[0]+" kg";
+  document.getElementById("t2").textContent = x.tiers[1]+" kg";
+  document.getElementById("t3").textContent = x.tiers[2]+" kg";
+  document.getElementById("detailFill").style.width = (pct ? Math.min(100,pct) : 0)+"%";
+  document.getElementById("detailProgress").textContent = pct ? pct+"%" : "—";
+  document.getElementById("detailNote").textContent = x.note ?? "아직 최대 기록이 등록되지 않았습니다. 다음 중량 체크 시 현재 기록을 추가합니다.";
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function closeDetail(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+document.getElementById("closeBtn").addEventListener("click",closeDetail);
+modal.addEventListener("click",(e)=>{if(e.target===modal)closeDetail()});
+document.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeDetail()});
 </script>
 </body>
 </html>
