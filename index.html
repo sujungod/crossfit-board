@@ -45,7 +45,7 @@
   .mile span{display:block;color:var(--muted);font-size:10px}.mile b{font-size:14px}
   .mile.current{border-color:#2b7385;background:rgba(103,232,249,.06)}
   .total-bar{height:10px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid #1d2835}
-  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:64.2%}
+  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:64.8%}
   .total-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
   .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted);text-align:right}
   .table-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
@@ -133,15 +133,15 @@
     <div class="total-top">
       <div>
         <div class="total-label">CrossFit Total · estimated</div>
-        <div class="total-value">642 lb <small>≈ 291 kg</small></div>
+        <div class="total-value">648 lb <small>≈ 294 kg</small></div>
         <div class="total-sub">Back Squat + Strict Press + Deadlift의 추정 1RM 합계입니다. 정식 CrossFit Total은 세 종목의 실제 1RM으로 기록합니다.</div>
       </div>
-      <div class="total-badge">1000 lb까지 358 lb</div>
+      <div class="total-badge">1000 lb까지 352 lb</div>
     </div>
     <div class="total-parts">
       <div class="total-part"><span>Back Squat</span><b>250 lb</b></div>
       <div class="total-part"><span>Strict Press</span><b>≈ 123 lb</b></div>
-      <div class="total-part"><span>Deadlift</span><b>≈ 269 lb</b></div>
+      <div class="total-part"><span>Deadlift</span><b>275 lb</b></div>
     </div>
     <div class="milestones">
       <div class="mile"><span>1st milestone</span><b>700 lb</b></div>
@@ -150,7 +150,7 @@
       <div class="mile current"><span>Big goal</span><b>1000 lb</b></div>
     </div>
     <div class="total-bar"><div class="total-fill"></div></div>
-    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>64.2%</span></div>
+    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>64.8%</span></div>
   </section>
 
   <div class="section-title">
@@ -181,7 +181,7 @@
   </section>
 
   <div class="note">
-    Front Squat과 Deadlift의 1RM은 반복수 기반 추정치입니다.
+    Front Squat과 Strict Press의 1RM은 반복수 기반 추정치입니다. Deadlift는 현재 성공한 최고 싱글 275 lb를 반영했습니다.
     향후 실제 1RM/3RM 기록이 나오면 그 값으로 교체합니다.
     ‘중상급’은 공식 CrossFit 등급이 아니라 개인 추적용 단계입니다.
   </div>
@@ -221,7 +221,7 @@ const bodyWeight = 76;
 const lifts = [
  {name:"Back Squat", rec:"113.4 kg × 1", est:113.4, estLabel:"113.4 kg", tiers:[125,145,160], note:"Every 2:00 × 5 sets, 5-4-3-2-1에서 마지막 250 lb(113.4 kg) × 1 수행. 최대 시도라기보다 프로그램 내 탑 싱글 기록으로 관리."},
  {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"105–108 kg", tiers:[100,115,130], note:"Every 2:00 × 5 sets에서 마지막 210 lb(95.3 kg) × 4 수행."},
- {name:"Deadlift", rec:"111.1 kg × 3", est:122, estLabel:"120–122 kg", tiers:[150,170,190], note:"Every 2:00 × 5 sets에서 마지막 245 lb(111.1 kg) × 3 수행."},
+ {name:"Deadlift", rec:"124.7 kg × 1", est:124.7, estLabel:"124.7 kg+", tiers:[150,170,190], note:"2026-10-01 Every 2:00 × 5 sets, 7-6-5-4-3 계획으로 165-205-235-255-275 lb 진행. 마지막 275 lb(124.7 kg)에서는 목표 3회 중 1회 성공. 현재 확정 최고 성공 중량은 275 lb × 1이며, 앞선 세트 누적 피로를 고려하면 실제 fresh 1RM은 더 높을 수 있음."},
  {name:"Strict Press", rec:"52.2 kg × 2", est:55.7, estLabel:"약 55–56 kg", tiers:[60,70,80], note:"Every 1:30 × 6 sets에서 115 lb(52.2 kg)로 Strict Press 2회 후 Push Press 2회를 연속 수행. 추정 1RM은 참고값."},
  {name:"Push Press", rec:"52.2 kg × 2", est:55.7, estLabel:"55 kg+ 참고", tiers:[75,85,100], note:"115 lb(52.2 kg)에서 Strict Press 2회 직후 Push Press 2회 성공. 선행 피로가 있어 실제 Push Press 최대치는 이 추정치보다 높을 가능성이 큼."},
  {name:"Clean", rec:null, est:null, estLabel:null, tiers:[90,100,112.5]},
