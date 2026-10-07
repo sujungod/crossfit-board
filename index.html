@@ -45,7 +45,7 @@
   .mile span{display:block;color:var(--muted);font-size:10px}.mile b{font-size:14px}
   .mile.current{border-color:#2b7385;background:rgba(103,232,249,.06)}
   .total-bar{height:10px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid #1d2835}
-  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:64.8%}
+  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:67.4%}
   .total-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
   .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted);text-align:right}
   .table-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
@@ -76,6 +76,20 @@
   .lift-row .row-right span{font-size:11px;color:var(--muted)}
   .hint{padding:10px 14px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
   .note{margin-top:16px;background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.20);padding:12px 14px;border-radius:14px;color:#e8dfb8;font-size:12px;line-height:1.55}
+  .wod-list{display:grid;gap:10px}
+  .wod-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow)}
+  .wod-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  .wod-date{font-weight:900;font-size:15px}
+  .wod-tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .wod-tag{font-size:10px;padding:4px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:rgba(255,255,255,.025)}
+  .wod-tag.rx{color:var(--good);border-color:rgba(134,239,172,.28);background:rgba(134,239,172,.05)}
+  .wod-tag.scaled{color:var(--warn);border-color:rgba(253,230,138,.25);background:rgba(253,230,138,.05)}
+  .wod-body{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .wod-block{border:1px solid var(--line);border-radius:14px;padding:11px;background:rgba(255,255,255,.02)}
+  .wod-block span{display:block;color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.08em;margin-bottom:5px}
+  .wod-block b{font-size:13px;line-height:1.55}
+  .wod-score{margin-top:10px;color:var(--muted);font-size:12px}
+  .wod-score strong{color:var(--text);font-size:15px}
   .footer{margin-top:26px;color:var(--muted);font-size:11px;text-align:center}
 
   .modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.58);backdrop-filter:blur(8px);z-index:20;padding:16px}
@@ -103,6 +117,7 @@
     .total-badge{display:inline-flex;margin-top:10px}
     .total-parts{grid-template-columns:1fr 1fr 1fr}
     .milestones{grid-template-columns:repeat(2,1fr)}
+    .wod-body{grid-template-columns:1fr}
     .desktop-table{display:none}
     .mobile-list{display:block}
     .section-title{align-items:flex-start}
@@ -118,7 +133,7 @@
     <div>
       <div class="eyebrow">CrossFit Strength Board</div>
       <h1>JUNSU</h1>
-      <div class="sub">2026.09.21 기준 · 약 3개월차</div>
+      <div class="sub">2026.10.07 기준 · 약 3개월차</div>
       <div class="metrics">
         <div class="metric"><b>173 cm</b><span>Height</span></div>
         <div class="metric"><b>76 kg</b><span>Body weight</span></div>
@@ -133,13 +148,13 @@
     <div class="total-top">
       <div>
         <div class="total-label">CrossFit Total · estimated</div>
-        <div class="total-value">648 lb <small>≈ 294 kg</small></div>
+        <div class="total-value">674 lb <small>≈ 306 kg</small></div>
         <div class="total-sub">Back Squat + Strict Press + Deadlift의 추정 1RM 합계입니다. 정식 CrossFit Total은 세 종목의 실제 1RM으로 기록합니다.</div>
       </div>
-      <div class="total-badge">1000 lb까지 352 lb</div>
+      <div class="total-badge">1000 lb까지 326 lb</div>
     </div>
     <div class="total-parts">
-      <div class="total-part"><span>Back Squat</span><b>250 lb</b><small>113.4 kg</small></div>
+      <div class="total-part"><span>Back Squat</span><b>≈ 276 lb</b><small>≈ 125.0 kg</small></div>
       <div class="total-part"><span>Strict Press</span><b>≈ 123 lb</b><small>≈ 55.8 kg</small></div>
       <div class="total-part"><span>Deadlift</span><b>275 lb</b><small>124.7 kg</small></div>
     </div>
@@ -150,7 +165,7 @@
       <div class="mile current"><span>Big goal</span><b>1000 lb</b></div>
     </div>
     <div class="total-bar"><div class="total-fill"></div></div>
-    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>64.8%</span></div>
+    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>67.4%</span></div>
   </section>
 
   <div class="section-title">
@@ -180,8 +195,75 @@
     <div class="hint">현재 기록은 확인된 실제 세트만 표시 · 1RM은 추정치가 있는 경우만 표시</div>
   </section>
 
+  <div class="section-title">
+    <h2>WOD history</h2>
+    <small>최근 기록부터 누적 관리</small>
+  </div>
+
+  <section class="wod-list">
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.10.07</div>
+        <div class="wod-tags"><span class="wod-tag scaled">Scaled</span><span class="wod-tag">Gymnastics</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · STRENGTH</span><b>Every 2:00 × 5 · 3 Back Squat<br>185 → 215 → 235 → 245 → 255 lb<br>Top: 255 lb (115.7 kg) × 3</b></div>
+        <div class="wod-block"><span>B · AMRAP 13</span><b>10 C2B → 사실상 Kipping Pull-up scale<br>15 DB Over Burpees<br>10 DB Snatches · 40 lb</b></div>
+      </div>
+      <div class="wod-score">Result · <strong>4R + 10</strong> · 총 150 reps</div>
+    </article>
+
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.10.06</div>
+        <div class="wod-tags"><span class="wod-tag rx">RX</span><span class="wod-tag">Weightlifting</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · COMPLEX</span><b>Every 1:30 × 5<br>1 Hang Power Clean + 1 Clean + 1 Jerk<br>95 → 115 → 125 → 135 → 145 lb</b></div>
+        <div class="wod-block"><span>B · FOR TIME</span><b>21-18-15-12-9-6-3 Push Jerk · 75 lb<br>Every round 15 Wall Ball · 20 lb</b></div>
+      </div>
+      <div class="wod-score">Result · <strong>12:13</strong> · RX</div>
+    </article>
+
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.10.02</div>
+        <div class="wod-tags"><span class="wod-tag scaled">Jumping BMU</span><span class="wod-tag">Volume</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · FRONT SQUAT</span><b>Every 1:30 × 5 · 5 reps<br>135 → 155 → 175 → 185 → 195 lb<br>Top: 195 lb (88.5 kg) × 5</b></div>
+        <div class="wod-block"><span>B · AMRAP 17</span><b>15 Squat · 10 KB Swing<br>BMU 1-2-3… → Box Jumping BMU scale</b></div>
+      </div>
+      <div class="wod-score">Result · <strong>8R + 33</strong></div>
+    </article>
+
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.10.01</div>
+        <div class="wod-tags"><span class="wod-tag">Deadlift</span><span class="wod-tag">PR</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · STRENGTH</span><b>Every 2:00 × 5 · 7-6-5-4-3 Deadlift<br>165 → 205 → 235 → 255 → 275 lb<br>275 lb 목표 3회 중 1회 성공</b></div>
+        <div class="wod-block"><span>PR</span><b>Deadlift 275 lb (124.7 kg) × 1</b></div>
+      </div>
+      <div class="wod-score">Current confirmed Deadlift PR · <strong>275 lb</strong></div>
+    </article>
+
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.09.21</div>
+        <div class="wod-tags"><span class="wod-tag scaled">SU 1:1</span><span class="wod-tag">Baseline</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · DEADLIFT</span><b>Every 2:00 × 5 · 3 reps<br>185 → 205 → 225 → 225 → 245 lb<br>Top: 245 lb (111.1 kg) × 3</b></div>
+        <div class="wod-block"><span>B · AMRAP 15</span><b>100 SU · 20 DB Box Step Over 40 lb · 20 Sit-ups<br>100 SU · 20 DB Front Rack Lunge 40 lb · 20 Sit-ups</b></div>
+      </div>
+      <div class="wod-score">Result · <strong>2R + 112</strong></div>
+    </article>
+  </section>
+
   <div class="note">
-    Front Squat과 Strict Press의 1RM은 반복수 기반 추정치입니다. Deadlift는 현재 성공한 최고 싱글 275 lb를 반영했습니다.
+    Back Squat·Front Squat·Strict Press의 1RM은 반복수 기반 추정치입니다. Deadlift는 현재 성공한 최고 싱글 275 lb를 반영했습니다.
     향후 실제 1RM/3RM 기록이 나오면 그 값으로 교체합니다.
     ‘중상급’은 공식 CrossFit 등급이 아니라 개인 추적용 단계입니다.
   </div>
@@ -219,7 +301,7 @@
 <script>
 const bodyWeight = 76;
 const lifts = [
- {name:"Back Squat", rec:"113.4 kg × 1", est:113.4, estLabel:"113.4 kg", tiers:[125,145,160], note:"Every 2:00 × 5 sets, 5-4-3-2-1에서 마지막 250 lb(113.4 kg) × 1 수행. 최대 시도라기보다 프로그램 내 탑 싱글 기록으로 관리."},
+ {name:"Back Squat", rec:"115.7 kg × 3", est:125, estLabel:"약 123–127 kg", tiers:[125,145,160], note:"2026-10-07 Every 2:00 × 5 sets, 3 reps. 185-215-235-245-255 lb로 진행해 마지막 255 lb(115.7 kg) × 3 성공. 반복수 기반 추정 1RM은 약 123–127 kg이며, 현재 중급 목표 125 kg 도달권."},
  {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"105–108 kg", tiers:[100,115,130], note:"Every 2:00 × 5 sets에서 마지막 210 lb(95.3 kg) × 4 수행."},
  {name:"Deadlift", rec:"124.7 kg × 1", est:124.7, estLabel:"124.7 kg+", tiers:[150,170,190], note:"2026-10-01 Every 2:00 × 5 sets, 7-6-5-4-3 계획으로 165-205-235-255-275 lb 진행. 마지막 275 lb(124.7 kg)에서는 목표 3회 중 1회 성공. 현재 확정 최고 성공 중량은 275 lb × 1이며, 앞선 세트 누적 피로를 고려하면 실제 fresh 1RM은 더 높을 수 있음."},
  {name:"Strict Press", rec:"52.2 kg × 2", est:55.7, estLabel:"약 55–56 kg", tiers:[60,70,80], note:"Every 1:30 × 6 sets에서 115 lb(52.2 kg)로 Strict Press 2회 후 Push Press 2회를 연속 수행. 추정 1RM은 참고값."},
