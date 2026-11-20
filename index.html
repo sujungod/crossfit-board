@@ -45,7 +45,7 @@
   .mile span{display:block;color:var(--muted);font-size:10px}.mile b{font-size:14px}
   .mile.current{border-color:#2b7385;background:rgba(103,232,249,.06)}
   .total-bar{height:10px;background:#0a1017;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid #1d2835}
-  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:68.9%}
+  .total-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--good));width:72.9%}
   .total-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}
   .section-title h2{font-size:18px;margin:0}.section-title small{color:var(--muted);text-align:right}
   .table-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
@@ -133,7 +133,7 @@
     <div>
       <div class="eyebrow">CrossFit Strength Board</div>
       <h1>JUNSU</h1>
-      <div class="sub">2026.11.19 기준 · 약 5개월차</div>
+      <div class="sub">2026.11.20 기준 · 약 5개월차</div>
       <div class="metrics">
         <div class="metric"><b>173 cm</b><span>Height</span></div>
         <div class="metric"><b>76 kg</b><span>Body weight</span></div>
@@ -148,15 +148,15 @@
     <div class="total-top">
       <div>
         <div class="total-label">CrossFit Total · estimated</div>
-        <div class="total-value">689 lb <small>≈ 313 kg</small></div>
+        <div class="total-value">729 lb <small>≈ 331 kg</small></div>
         <div class="total-sub">Back Squat + Strict Press + Deadlift의 추정 1RM 합계입니다. 정식 CrossFit Total은 세 종목의 실제 1RM으로 기록합니다.</div>
       </div>
-      <div class="total-badge">1000 lb까지 311 lb</div>
+      <div class="total-badge">1000 lb까지 271 lb</div>
     </div>
     <div class="total-parts">
       <div class="total-part"><span>Back Squat</span><b>≈ 276 lb</b><small>≈ 125.0 kg</small></div>
       <div class="total-part"><span>Strict Press</span><b>≈ 138 lb</b><small>≈ 62.5 kg</small></div>
-      <div class="total-part"><span>Deadlift</span><b>275 lb</b><small>124.7 kg</small></div>
+      <div class="total-part"><span>Deadlift</span><b>315 lb</b><small>142.9 kg</small></div>
     </div>
     <div class="milestones">
       <div class="mile"><span>1st milestone</span><b>700 lb</b></div>
@@ -165,7 +165,7 @@
       <div class="mile current"><span>Big goal</span><b>1000 lb</b></div>
     </div>
     <div class="total-bar"><div class="total-fill"></div></div>
-    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>68.9%</span></div>
+    <div class="total-progress"><span>1000 lb 목표 진행률</span><span>72.9%</span></div>
   </section>
 
   <div class="section-title">
@@ -201,6 +201,17 @@
   </div>
 
   <section class="wod-list">
+    <article class="wod-card">
+      <div class="wod-head">
+        <div class="wod-date">2026.11.20</div>
+        <div class="wod-tags"><span class="wod-tag">Deadlift</span><span class="wod-tag rx">PR</span></div>
+      </div>
+      <div class="wod-body">
+        <div class="wod-block"><span>A · DEADLIFT 5-4-3-2-1</span><b>Progressive sets through 265 lb × 2<br>Final 1RM: 315 lb (142.9 kg) × 1<br>Grip: Alternating / mixed grip</b></div>
+        <div class="wod-block"><span>PR</span><b>Previous confirmed PR: 275 lb<br>New PR: 315 lb<br>+40 lb / +18.1 kg</b></div>
+      </div>
+      <div class="wod-score">Current confirmed Deadlift 1RM · <strong>315 lb (142.9 kg)</strong></div>
+    </article>
     <article class="wod-card">
       <div class="wod-head">
         <div class="wod-date">2026.11.19</div>
@@ -371,7 +382,7 @@ const bodyWeight = 76;
 const lifts = [
  {name:"Back Squat", rec:"115.7 kg × 3", est:125, estLabel:"약 123–127 kg", tiers:[125,145,160], note:"2026-10-07 Every 2:00 × 5 sets, 3 reps. 185-215-235-245-255 lb로 진행해 마지막 255 lb(115.7 kg) × 3 성공. 반복수 기반 추정 1RM은 약 123–127 kg이며, 현재 중급 목표 125 kg 도달권."},
  {name:"Front Squat", rec:"95.3 kg × 4", est:108, estLabel:"105–108 kg", tiers:[100,115,130], note:"2026-10-12 4 reps × 5 sets: 165-195-205-210-210 lb. 마지막 두 세트에서 210 lb(95.3 kg) × 4를 연속 성공. 최고 중량은 기존과 동일하지만 총 볼륨 3,940 lb(약 1,787 kg)로 이전 4-rep 세션보다 증가."},
- {name:"Deadlift", rec:"124.7 kg × 1", est:124.7, estLabel:"124.7 kg+", tiers:[150,170,190], note:"2026-10-01 Every 2:00 × 5 sets, 7-6-5-4-3 계획으로 165-205-235-255-275 lb 진행. 마지막 275 lb(124.7 kg)에서는 목표 3회 중 1회 성공. 현재 확정 최고 성공 중량은 275 lb × 1이며, 앞선 세트 누적 피로를 고려하면 실제 fresh 1RM은 더 높을 수 있음."},
+ {name:"Deadlift", rec:"142.9 kg × 1", est:142.9, estLabel:"142.9 kg", tiers:[150,170,190], note:"2026-11-20 Deadlift 5-4-3-2-1 세션에서 265 lb(120.2 kg) ×2까지 진행 후, 코치 지시에 따라 양쪽에 25 lb씩 추가해 315 lb(142.9 kg) ×1 성공. 얼터네이티브 그립 사용. 현재 확정 Deadlift 1RM PR."},
  {name:"Strict Press", rec:"54.4 kg × 5", est:62.5, estLabel:"약 61–63.5 kg", tiers:[60,70,80], note:"2026-11-18 Every 1:30 × 5 sets, 5 Shoulder Press. 75-95-115-120-120 lb로 진행해 마지막 두 세트에서 120 lb(54.4 kg) × 5를 연속 성공. 반복수 기반 추정 1RM은 약 61–63.5 kg으로 중급 목표 60 kg을 넘긴 것으로 봄."},
  {name:"Push Press", rec:"52.2 kg × 2", est:55.7, estLabel:"55 kg+ 참고", tiers:[75,85,100], note:"115 lb(52.2 kg)에서 Strict Press 2회 직후 Push Press 2회 성공. 선행 피로가 있어 실제 Push Press 최대치는 이 추정치보다 높을 가능성이 큼."},
  {name:"Clean", rec:"65.8 kg+ (complex)", est:65.8, estLabel:"65.8 kg+ 확인", tiers:[90,100,112.5], note:"2026-10-06 Every 1:30 × 5 sets. 1 Hang Power Clean + 1 Clean + 1 Jerk complex를 95-115-125-135-145 lb로 수행. 마지막 145 lb(65.8 kg) complex 성공. 단일 Clean 1RM 테스트가 아니므로 실제 최대치는 더 높을 수 있음."},
